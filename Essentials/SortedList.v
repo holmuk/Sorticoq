@@ -1,5 +1,6 @@
 Require Import Nat List Bool.
 Require Import Coq.Sorting.Sorted.
+Require Import Coq.Sorting.Permutation.
 Require Import Coq.Relations.Relation_Definitions.
 Import ListNotations.
 
@@ -49,4 +50,29 @@ Proof.
     rewrite app_assoc in *. rewrite <- H3 in *.
     simpl in *. constructor; auto.
 Qed.
+
+Definition is_sorting_algo {A: Type} (R: relation A) (f: list A -> list A) :=
+  forall l, Sorted R (f l) /\
+    forall x, In x l <-> In x (f l).
+
+Definition is_sorting_algo_perm {A: Type} (R: relation A) (f: list A -> list A) :=
+  forall l, Permutation l (f l) /\ Sorted R (f l).
+
+Lemma Perm_eq: forall {A: Type} l l',
+  @Permutation A l l' <-> forall x, In x l <-> In x l'.
+Proof.
+  intros; intuition.
+  - apply Permutation_in with (x:=x) in H; auto.
+  - symmetry in H. apply Permutation_in with (x:=x) in H; auto.
+  - Admitted.
+
+Lemma is_sorting_equivalence: forall {A: Type} (R: relation A) (f: list A -> list A),
+  is_sorting_algo R f <-> is_sorting_algo_perm R f.
+Proof.
+  intros; unfold is_sorting_algo, is_sorting_algo_perm; firstorder.
+  - apply Perm_eq. apply H.
+  - destruct (H l). rewrite Perm_eq in H1. apply H1; auto.
+  - destruct (H l). rewrite Perm_eq in H1. apply H1; auto.
+Qed.
+
 
