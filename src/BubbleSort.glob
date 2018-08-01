@@ -1,0 +1,6 @@
+DIGEST 9154b05b4203d63efc9f7bae26eaedf3
+FSorticoq.BubbleSort
+R15:18 Coq.Lists.List <> <> lib
+R20:25 Coq.Structures.Orders <> <> lib
+R43:68 Coq.Structures.OrdersFacts <> <> lib
+R86:113 Coq.Structures.GenericMinMax <> <> lib

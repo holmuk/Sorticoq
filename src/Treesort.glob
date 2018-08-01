@@ -1,0 +1,162 @@
+DIGEST 4a32065bc0364eba9d4723d857ceb303
+FSorticoq.Treesort
+R15:17 Coq.Init.Nat <> <> lib
+R19:22 Coq.Lists.List <> <> lib
+R24:27 Coq.Bool.Bool <> <> lib
+R29:36 Coq.Arith.PeanoNat <> <> lib
+R54:87 Coq.Relations.Relation_Definitions <> <> lib
+R105:122 Coq.Sorting.Sorted <> <> lib
+R140:158 Sorticoq.SortedList <> <> lib
+R176:194 Sorticoq.BinaryTree <> <> lib
+ax 230:230 <> A
+ax 248:250 <> lte
+R253:260 Coq.Relations.Relation_Definitions <> relation def
+R262:262 Sorticoq.Treesort <> A defax
+ax 275:282 <> lte_bool
+R286:289 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R291:294 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R295:298 Coq.Init.Datatypes <> bool ind
+R290:290 Sorticoq.Treesort <> A defax
+R285:285 Sorticoq.Treesort <> A defax
+ax 312:320 <> lte_trans
+R323:332 Coq.Relations.Relation_Definitions <> transitive def
+R336:338 Sorticoq.Treesort <> lte defax
+ax 351:359 <> lte_total
+R362:366 Sorticoq.BinaryTree <> total def
+R370:372 Sorticoq.Treesort <> lte defax
+ax 386:396 <> lte_to_bool
+R420:424 Coq.Init.Logic <> :type_scope:x_'<->'_x not
+R413:415 Sorticoq.Treesort <> lte defax
+R419:419 Sorticoq.Treesort <> y var
+R417:417 Sorticoq.Treesort <> x var
+R437:439 Coq.Init.Logic <> :type_scope:x_'='_x not
+R425:432 Sorticoq.Treesort <> lte_bool defax
+R436:436 Sorticoq.Treesort <> y var
+R434:434 Sorticoq.Treesort <> x var
+R440:443 Coq.Init.Datatypes <> true constr
+ax 457:465 <> lte_to_eq
+R504:507 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R509:511 Coq.Init.Logic <> :type_scope:x_'='_x not
+R508:508 Sorticoq.Treesort <> x var
+R512:512 Sorticoq.Treesort <> y var
+R482:482 Coq.Init.Logic <> :type_scope:x_'/\'_x not
+R490:495 Coq.Init.Logic <> :type_scope:x_'/\'_x not
+R503:503 Coq.Init.Logic <> :type_scope:x_'/\'_x not
+R483:485 Sorticoq.Treesort <> lte defax
+R489:489 Sorticoq.Treesort <> y var
+R487:487 Sorticoq.Treesort <> x var
+R496:498 Sorticoq.Treesort <> lte defax
+R502:502 Sorticoq.Treesort <> x var
+R500:500 Sorticoq.Treesort <> y var
+R539:569 Sorticoq.BinaryTree BinaryTreeParameters <> mod
+mod 523:534 <> BTForSortDef
+def 583:591 BTForSortDef Node_type
+R596:596 Sorticoq.Treesort <> A defax
+def 610:612 BTForSortDef lte
+R617:619 Sorticoq.Treesort <> lte defax
+def 633:640 BTForSortDef lte_bool
+R645:652 Sorticoq.Treesort <> lte_bool defax
+def 666:676 BTForSortDef lte_to_bool
+R681:691 Sorticoq.Treesort <> lte_to_bool defax
+def 705:713 BTForSortDef lte_total
+R718:726 Sorticoq.Treesort <> lte_total defax
+def 740:748 BTForSortDef lte_trans
+R753:761 Sorticoq.Treesort <> lte_trans defax
+def 775:783 BTForSortDef lte_to_eq
+R788:796 Sorticoq.Treesort <> lte_to_eq defax
+R803:814 Sorticoq.Treesort BTForSortDef <> mod
+R838:850 Sorticoq.BinaryTree BinaryTreeDef <> modtype
+R852:863 Sorticoq.Treesort BTForSortDef <> modtype
+mod 825:833 <> BTForSort
+def 894:900 <> makeBST
+R906:909 Coq.Init.Datatypes <> list ind
+R911:911 Sorticoq.Treesort <> A defax
+R916:925 Sorticoq.Treesort <> BinaryTree ind
+R938:938 Sorticoq.Treesort <> l var
+R949:951 Coq.Init.Datatypes <> nil constr
+R956:961 Sorticoq.Treesort <> BT_nil constr
+R968:969 Coq.Init.Datatypes <> :list_scope:x_'::'_x not
+R975:984 Sorticoq.Treesort <> BST_Insert def
+R987:993 Sorticoq.Treesort <> makeBST def
+prf 1014:1023 <> makeBST_ok
+R1039:1042 Coq.Init.Datatypes <> list ind
+R1044:1044 Sorticoq.Treesort <> A defax
+R1071:1075 Coq.Init.Logic <> :type_scope:x_'<->'_x not
+R1050:1056 Sorticoq.Treesort <> In_tree ind
+R1061:1067 Sorticoq.Treesort <> makeBST def
+R1069:1069 Sorticoq.Treesort <> l var
+R1058:1058 Sorticoq.Treesort <> x var
+R1076:1077 Coq.Lists.List <> In def
+R1081:1081 Sorticoq.Treesort <> l var
+R1079:1079 Sorticoq.Treesort <> x var
+R1194:1207 Sorticoq.Treesort <> In_tree_insert thm
+R1194:1207 Sorticoq.Treesort <> In_tree_insert thm
+R1236:1249 Sorticoq.Treesort <> In_insert_cond thm
+R1236:1249 Sorticoq.Treesort <> In_insert_cond thm
+def 1280:1287 <> Treesort
+R1293:1296 Coq.Init.Datatypes <> list ind
+R1298:1298 Sorticoq.Treesort <> A defax
+R1303:1306 Coq.Init.Datatypes <> list ind
+R1308:1308 Sorticoq.Treesort <> A defax
+R1315:1325 Sorticoq.Treesort <> BT_get_list def
+R1328:1334 Sorticoq.Treesort <> makeBST def
+R1336:1336 Sorticoq.Treesort <> l var
+prf 1347:1371 <> Treesort_is_LocallySorted
+R1386:1398 Coq.Sorting.Sorted <> LocallySorted ind
+R1405:1412 Sorticoq.Treesort <> Treesort def
+R1414:1414 Sorticoq.Treesort <> l var
+R1400:1402 Sorticoq.Treesort <> lte defax
+R1441:1460 Sorticoq.Treesort <> BST_is_LocallySorted thm
+R1441:1460 Sorticoq.Treesort <> BST_is_LocallySorted thm
+R1499:1521 Sorticoq.Treesort <> Insert_not_change_BSTSP thm
+R1499:1521 Sorticoq.Treesort <> Insert_not_change_BSTSP thm
+prf 1548:1569 <> Treesort_not_change_In
+R1592:1596 Coq.Init.Logic <> :type_scope:x_'<->'_x not
+R1586:1587 Coq.Lists.List <> In def
+R1591:1591 Sorticoq.Treesort <> l var
+R1589:1589 Sorticoq.Treesort <> x var
+R1597:1598 Coq.Lists.List <> In def
+R1603:1610 Sorticoq.Treesort <> Treesort def
+R1612:1612 Sorticoq.Treesort <> l var
+R1600:1600 Sorticoq.Treesort <> x var
+R1647:1654 Sorticoq.Treesort <> Treesort def
+R1672:1693 Sorticoq.Treesort <> In_tree_In_equivalence thm
+R1672:1693 Sorticoq.Treesort <> In_tree_In_equivalence thm
+R1706:1715 Sorticoq.Treesort <> makeBST_ok thm
+R1706:1715 Sorticoq.Treesort <> makeBST_ok thm
+R1740:1761 Sorticoq.Treesort <> In_tree_In_equivalence thm
+R1740:1761 Sorticoq.Treesort <> In_tree_In_equivalence thm
+R1779:1788 Sorticoq.Treesort <> makeBST_ok thm
+R1779:1788 Sorticoq.Treesort <> makeBST_ok thm
+def 1820:1834 <> is_sorting_algo
+R1850:1857 Coq.Relations.Relation_Definitions <> relation def
+R1859:1859 Sorticoq.Treesort <> A var
+R1872:1875 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R1876:1879 Coq.Init.Datatypes <> list ind
+R1881:1881 Sorticoq.Treesort <> A var
+R1866:1869 Coq.Init.Datatypes <> list ind
+R1871:1871 Sorticoq.Treesort <> A var
+R1913:1920 Coq.Init.Logic <> :type_scope:x_'/\'_x not
+R1899:1904 Coq.Sorting.Sorted <> Sorted ind
+R1909:1909 Sorticoq.Treesort <> f var
+R1911:1911 Sorticoq.Treesort <> l var
+R1906:1906 Sorticoq.Treesort <> R var
+R1937:1941 Coq.Init.Logic <> :type_scope:x_'<->'_x not
+R1931:1932 Coq.Lists.List <> In def
+R1936:1936 Sorticoq.Treesort <> l var
+R1934:1934 Sorticoq.Treesort <> x var
+R1942:1943 Coq.Lists.List <> In def
+R1948:1948 Sorticoq.Treesort <> f var
+R1950:1950 Sorticoq.Treesort <> l var
+R1945:1945 Sorticoq.Treesort <> x var
+prf 1963:1986 <> Treesort_is_sorting_algo
+R1991:2005 Sorticoq.Treesort <> is_sorting_algo def
+R2011:2018 Sorticoq.Treesort <> Treesort def
+R2007:2009 Sorticoq.Treesort <> lte defax
+R2037:2051 Sorticoq.Treesort <> is_sorting_algo def
+R2071:2094 Coq.Sorting.Sorted <> Sorted_LocallySorted_iff thm
+R2071:2094 Coq.Sorting.Sorted <> Sorted_LocallySorted_iff thm
+R2103:2127 Sorticoq.Treesort <> Treesort_is_LocallySorted thm
+R2103:2127 Sorticoq.Treesort <> Treesort_is_LocallySorted thm
+R2170:2191 Sorticoq.Treesort <> Treesort_not_change_In thm
+R2170:2191 Sorticoq.Treesort <> Treesort_not_change_In thm
