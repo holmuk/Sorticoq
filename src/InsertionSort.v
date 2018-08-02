@@ -2,6 +2,7 @@ Require Import List Orders.
 Require Import Coq.Structures.OrdersFacts.
 Require Import Coq.Sorting.Permutation.
 Require Import Coq.Sorting.Sorted.
+Require Import Sorticoq.SortedList.
 Import ListNotations.
 
 Module InsertionSort (Import O: UsualOrderedTypeFull').
@@ -41,21 +42,12 @@ Proof.
   specialize IHl with x; transitivity (a::x::l); auto.
 Qed.
 
-Lemma InsertionSort_Permute_t: forall n l,
-  length l = n -> Permutation l (InsertionSort l).
-Proof.
-  induction n; intros.
-  - apply length_zero_iff_nil in H; subst; auto.
-  - destruct l; auto.
-    simpl in H. apply eq_add_S in H. apply IHn in H.
-    simpl. transitivity (a::InsertionSort l); auto.
-    apply Permute.
-Qed.
-
-Corollary InsertionSort_Permute: forall l,
+Lemma InsertionSort_Permutation: forall l,
   Permutation l (InsertionSort l).
 Proof.
-  intros; apply InsertionSort_Permute_t with (length l); auto.
+  induction l; simpl; auto.
+  transitivity (a::(InsertionSort l)); auto.
+  apply Permute.
 Qed.
 
 Lemma Insert_LocallySorted: forall l a,
@@ -81,14 +73,11 @@ Proof.
   apply InsertionSort_LocallySorted.
 Qed.
 
-Definition is_sorting_algo (R: relation A) (f: list A -> list A) :=
-  forall l, Permutation l (f l) /\ Sorted R (f l).
-
 Theorem InsertionSort_is_sorting_algo:
   is_sorting_algo le InsertionSort.
 Proof.
   unfold is_sorting_algo; intros; split.
-  - apply InsertionSort_Permute.
+  - apply InsertionSort_Permutation.
   - apply InsertionSort_Sorted.
 Qed.
 

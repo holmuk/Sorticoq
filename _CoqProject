@@ -2,9 +2,9 @@
 -Q src Sorticoq
 
 Essentials/BinaryTree.v
-Essentials/MathAuxillary.v
 Essentials/SortedList.v
 Essentials/Sublist.v
+Essentials/MathAuxillary.v
 
 src/InsertionSort.v
 src/Treesort.v

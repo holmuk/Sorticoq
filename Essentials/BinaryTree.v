@@ -35,7 +35,7 @@ End BinaryTreeParameters.
 *)
 
 Module BinaryTreeDef (BTP: BinaryTreeParameters).
-Import BTP.
+Export BTP.
 
 Lemma lte_refl: reflexive _ lte.
 Proof.
@@ -750,4 +750,89 @@ Proof.
     apply LocallySorted_begin; firstorder.
 Qed.
 
+Lemma BST_Insert_emplace: forall T Tr x,
+  BST_Insert T x = Tr ->
+  exists l l', l ++ [x] ++ l' = BT_get_list Tr /\
+    l ++ l' = BT_get_list T.
+Proof.
+  intros. apply BST_Insert_eq in H. induction H.
+  - unfold BT_get_list; simpl. do 2 exists []; auto.
+  - unfold BT_get_list in *; simpl. apply BST_Insert_eq in H0.
+    destruct IHBST_indInsert as [e1 [e2 [H1 H2]]]. rewrite <- H1. rewrite <- H2.
+    remember (In_order_traverse t2 _) as E.
+    exists e1. exists (e2 ++ r::E). simpl. rewrite app_assoc.
+    rewrite app_comm_cons. rewrite <- app_assoc. auto.
+  - unfold BT_get_list in *; simpl.
+    destruct IHBST_indInsert as [e1 [e2 [H1 H2]]]. rewrite <- H1. rewrite <- H2.
+    remember (In_order_traverse t _) as E.
+    exists (E ++ [r] ++ e1). exists e2. simpl. repeat rewrite app_comm_cons.
+    repeat rewrite <- app_assoc. auto.
+Qed.
+
+Corollary BST_Insert_increase_length: forall T Tr x,
+  BST_Insert T x = Tr ->
+  length (BT_get_list Tr) = S (length (BT_get_list T)).
+Proof.
+  intros. apply BST_Insert_emplace in H. destruct H as [e1 [e2 [H' H'']]].
+  rewrite <- H'. rewrite <- H''. simpl. repeat rewrite app_length. simpl.
+  rewrite plus_n_Sm. reflexivity.
+Qed.
+
 End BinaryTreeDef.
+
+(**
+  BinaryTree from UsualOrderedTypeFull'
+*)
+
+Require Import Orders.
+Require Import Coq.Structures.OrdersFacts.
+
+Module UsualOrderedTypeFull'_to_BinaryTree (Import O : UsualOrderedTypeFull').
+
+Include (OrderedTypeFacts O).
+Include (OTF_to_TTLB O).
+
+Definition A := O.t.
+
+Lemma le_eq: forall x y,
+  (le x y) /\ (le y x) -> x = y.
+Proof.
+  intros. destruct H. apply le_lteq in H. apply le_lteq in H0.
+  intuition; order.
+Qed.
+
+Lemma le_trans: @transitive O.t le.
+Proof.
+  unfold transitive.
+  intros. apply le_lteq in H. apply le_lteq in H0.
+  apply le_lteq. intuition; order.
+Qed.
+
+Lemma le_total: forall x y,
+  le x y \/ le y x.
+Proof.
+  intros.
+  do 2 rewrite <- leb_le. unfold is_true. apply leb_total.
+Qed.
+
+Lemma le_bool: forall x y,
+  le x y <-> leb x y = true.
+Proof.
+  split; intros;
+  apply leb_le in H; unfold is_true in *; auto.
+Qed.
+
+Module BTDef <: BinaryTree.BinaryTreeParameters.
+Definition Node_type := A.
+Definition lte := le.
+Definition lte_bool := leb.
+Definition lte_to_bool := le_bool.
+Definition lte_total := le_total.
+Definition lte_trans := le_trans.
+Definition lte_to_eq := le_eq.
+End BTDef.
+
+Module BTDefT := BinaryTreeDef BTDef.
+Export BTDefT.
+
+End UsualOrderedTypeFull'_to_BinaryTree.
