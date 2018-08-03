@@ -51,6 +51,17 @@ Proof.
     simpl in *. constructor; auto.
 Qed.
 
+Lemma LocallySorted_hd_relation: forall {A: Type} {R: relation A} l x,
+  (forall t, In t l -> R x t) ->
+  LocallySorted R l ->
+  LocallySorted R (x::l).
+Proof.
+  intros; generalize dependent l.
+  induction l; intros; auto.
+  constructor; auto.
+  constructor; auto. apply H. simpl; auto.
+Qed.
+
 Definition is_sorting_algo {A: Type} (R: relation A) (f: list A -> list A) :=
   forall l, Permutation l (f l) /\ Sorted R (f l).
 
