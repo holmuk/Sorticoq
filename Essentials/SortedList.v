@@ -1,8 +1,10 @@
-Require Import Nat List Bool.
+Require Import Nat List Bool Logic Orders.
 Require Import Coq.Sorting.Sorted.
 Require Import Coq.Sorting.Permutation.
 Require Import Coq.Relations.Relation_Definitions.
 Import ListNotations.
+
+Hint Constructors LocallySorted.
 
 Lemma LocallySorted_begin: forall {A:Type} {R:relation A} l x y,
   LocallySorted R (x::l) ->
@@ -59,7 +61,26 @@ Proof.
   intros; generalize dependent l.
   induction l; intros; auto.
   constructor; auto.
-  constructor; auto. apply H. simpl; auto.
+  apply H. simpl; auto.
+Qed.
+
+Lemma LocallySorted_end_relation: forall {A:Type} {R: relation A} l x,
+  Transitive R ->
+  (forall t : A, In t l -> R t x) -> LocallySorted R l ->
+    LocallySorted R (l ++ [x]).
+Proof.
+  intros; generalize dependent l;
+  induction l; intros; simpl; auto.
+  apply LocallySorted_hd_relation; intros;
+  apply Sorted_LocallySorted_iff in H1;
+  apply Sorted_StronglySorted in H1; auto;
+  apply StronglySorted_inv in H1; destruct H1 as [EQ ED];
+  rewrite Forall_forall in ED. apply in_app_or in H2. destruct H2; auto.
+  - simpl in H1; intuition; subst.
+    apply H0. simpl. auto.
+  - apply IHl. intros.
+    apply H0. simpl. auto.
+    apply StronglySorted_Sorted in EQ. apply Sorted_LocallySorted_iff; auto.
 Qed.
 
 Definition is_sorting_algo {A: Type} (R: relation A) (f: list A -> list A) :=

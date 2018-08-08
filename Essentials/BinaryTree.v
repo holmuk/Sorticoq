@@ -747,7 +747,6 @@ Proof.
     simpl in H6; rewrite H6 in *.
     rewrite app_assoc_reverse. simpl.
     apply LocallySorted_sum; firstorder.
-    apply LocallySorted_begin; firstorder.
 Qed.
 
 Lemma BST_Insert_emplace: forall T Tr x,
@@ -787,7 +786,7 @@ End BinaryTreeDef.
 Require Import Orders.
 Require Import Coq.Structures.OrdersFacts.
 
-Module UsualOrderedTypeFull'_to_BinaryTree (Import O : UsualOrderedTypeFull').
+Module AdditionalFacts (Import O: UsualOrderedTypeFull').
 
 Include (OrderedTypeFacts O).
 Include (OTF_to_TTLB O).
@@ -822,7 +821,13 @@ Proof.
   apply leb_le in H; unfold is_true in *; auto.
 Qed.
 
-Module BTDef <: BinaryTree.BinaryTreeParameters.
+End AdditionalFacts.
+
+Module UsualOrderedTypeFull'_to_BinaryTree
+  (Import O : UsualOrderedTypeFull') <: BinaryTreeParameters.
+
+Include (AdditionalFacts O).
+
 Definition Node_type := A.
 Definition lte := le.
 Definition lte_bool := leb.
@@ -830,9 +835,12 @@ Definition lte_to_bool := le_bool.
 Definition lte_total := le_total.
 Definition lte_trans := le_trans.
 Definition lte_to_eq := le_eq.
-End BTDef.
-
-Module BTDefT := BinaryTreeDef BTDef.
-Export BTDefT.
 
 End UsualOrderedTypeFull'_to_BinaryTree.
+
+Module BinaryTree_over_OrderedType (Import O: UsualOrderedTypeFull').
+Module BTDef := UsualOrderedTypeFull'_to_BinaryTree O.
+Module BTDefT := BinaryTreeDef BTDef.
+Export BTDefT.
+Export BTDef.
+End BinaryTree_over_OrderedType.

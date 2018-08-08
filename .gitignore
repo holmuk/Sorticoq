@@ -4,6 +4,7 @@
 *.vo
 *.v.d
 *.glob
+*.crashcoqide
 .coq-native
 Makefile.coq
 *.aux

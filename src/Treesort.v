@@ -8,8 +8,11 @@ Require Import Sorticoq.BinaryTree.
 Import ListNotations.
 
 Module TreeSort (Import O: UsualOrderedTypeFull').
+(*
 Module Bdefs := UsualOrderedTypeFull'_to_BinaryTree O.
 Import Bdefs.
+*)
+Include (BinaryTree_over_OrderedType O).
 
 Fixpoint makeBST (l: list A) : BinaryTree :=
   match l with

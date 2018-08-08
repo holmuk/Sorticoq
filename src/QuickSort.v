@@ -34,7 +34,6 @@ Fixpoint QuickSortHelp (l: list A) (help: nat) : list A :=
 Definition QuickSort (l: list A) : list A :=
   QuickSortHelp l (length l).
 
-Hint Constructors LocallySorted.
 Hint Extern 1 (?x <= ?y) => apply le_lteq; OrderTac.order.
 
 Ltac convert_compare :=

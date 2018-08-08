@@ -4,10 +4,10 @@
 Essentials/BinaryTree.v
 Essentials/SortedList.v
 Essentials/Sublist.v
-Essentials/MathAuxillary.v
 
 src/BubbleSort.v
 src/InsertionSort.v
+src/QuickSort.v
 src/SelectionSort.v
 src/Treesort.v
 
